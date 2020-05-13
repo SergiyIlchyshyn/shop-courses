@@ -7,5 +7,9 @@ router.get('/', (req, res, next) => {
         isAdd: true
     });
 });
+router.post('/', (req, res, next) => {
+    console.log(req.body);
+    res.redirect('/courses');
+});
 
 module.exports = router;
