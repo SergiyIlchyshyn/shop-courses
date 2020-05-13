@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', (req, res, next) => {
-    res.render('index', {
-        title: 'Home page',
-        isHome: true
+    res.render('add', {
+        title: 'Add course',
+        isAdd: true
     });
 });
 
