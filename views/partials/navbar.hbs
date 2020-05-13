@@ -2,14 +2,38 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">Courses App</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="/courses">Courses</a></li>
-            <li><a href="/add">Add course</a></li>
+            {{#if isHome}}
+                <li class="active"><a href="/">Home</a></li>
+            {{else}}
+                <li><a href="/">Home</a></li>
+            {{/if}}
+            {{#if isCourses}}
+                <li class="active"><a href="/courses">Courses</a></li>
+            {{else}}
+                <li><a href="/courses">Courses</a></li>
+            {{/if}}
+            {{#if isAdd}}
+                <li class="active"><a href="/add">Add course</a></li>
+            {{else}}
+                <li><a href="/add">Add course</a></li>
+            {{/if}}  
         </ul>
         <ul id="slide-out" class="sidenav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/courses">Courses</a></li>
-            <li><a href="/add">Add course</a></li>
+            {{#if isHome}}
+                <li class="active"><a href="/">Home</a></li>
+            {{else}}
+                <li><a href="/">Home</a></li>
+            {{/if}}
+            {{#if isCourses}}
+                <li class="active"><a href="/courses">Courses</a></li>
+            {{else}}
+                <li><a href="/courses">Courses</a></li>
+            {{/if}}
+            {{#if isAdd}}
+                <li class="active"><a href="/add">Add course</a></li>
+            {{else}}
+                <li><a href="/add">Add course</a></li>
+            {{/if}}
         </ul>
         <a href="#" data-target="slide-out" class="right sidenav-trigger"><i class="fa fa-bars" aria-hidden="true"></i></a>
     </div>
