@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars');
+const Handlebars = require('handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 //==============================================================================
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,7 +17,8 @@ var app = express();
 app.engine('.hbs', expressHbs({
     layoutsDir: "views/layouts",
     defaultLayout: 'layout',
-    extname: '.hbs'
+    extname: '.hbs',
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
 }));
 app.set('view engine', '.hbs');
 //==============================================================================
