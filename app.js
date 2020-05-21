@@ -9,7 +9,7 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 //MONGOOSE======================================================================
 var mongoose = require('mongoose');
 async function start() {
-    const url = `mongodb+srv://admin-shop:Oi6Fn45QzY1oDUBg@clustertest-3w4kv.mongodb.net/test?retryWrites=true&w=majority`;
+    const url = `mongodb+srv://admin-shop:Oi6Fn45QzY1oDUBg@clustertest-3w4kv.mongodb.net/shop`;
     // Для подключения к БД применяем метод connect()
     await mongoose.connect(url, {
             useNewUrlParser: true,
