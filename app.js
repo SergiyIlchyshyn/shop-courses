@@ -6,6 +6,8 @@ var logger = require('morgan');
 var expressHbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+
+const User = require('./models/user');
 //MONGOOSE======================================================================
 var mongoose = require('mongoose');
 async function start() {
@@ -21,6 +23,16 @@ async function start() {
         .catch(err => {
             console.log(Error, err.message);
         });
+
+    const candidate = await User.findOne();
+    if (!candidate) {
+        const user = new User({
+            email: 'sergiy.ilchyshyn@gmail.com',
+            name: 'Sergiy',
+            cart: { items: [] }
+        });
+        await user.save();
+    }
 }
 start();
 //==============================================================================
@@ -31,6 +43,17 @@ var addRouter = require('./routes/add');
 var cardRouter = require('./routes/card');
 //==============================================================================
 var app = express();
+//==============================================================================
+app.use(async(req, res, next) => {
+    try {
+        const user = await User.findById('5ec691f45f2bd31d54b94be1');
+        req.user = user;
+        next();
+    } catch (e) {
+        console.error(e);
+
+    }
+});
 //HANDLEBARS====================================================================
 app.engine('.hbs', expressHbs({
     layoutsDir: "views/layouts",
