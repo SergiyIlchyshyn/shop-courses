@@ -4,9 +4,10 @@ window.onload = function() {
     // ===========================================
 
     const toCurrency = price => {
-        return new Intl.NumberFormat('us-US', {
-            currency: 'USD',
-            style: 'currency'
+        return new Intl.NumberFormat('uk-UA', {
+            currency: 'UAH',
+            style: 'currency',
+            currencyDisplay: 'code'
         }).format(price);
     }
     document.querySelectorAll('.price').forEach(node => {
