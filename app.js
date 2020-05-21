@@ -6,6 +6,23 @@ var logger = require('morgan');
 var expressHbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+//MONGOOSE======================================================================
+var mongoose = require('mongoose');
+async function start() {
+    const url = `mongodb+srv://admin-shop:Oi6Fn45QzY1oDUBg@clustertest-3w4kv.mongodb.net/test?retryWrites=true&w=majority`;
+    // Для подключения к БД применяем метод connect()
+    await mongoose.connect(url, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: false
+        })
+        .then(() => console.log('DB Connected!'))
+        .catch(err => {
+            console.log(Error, err.message);
+        });
+}
+start();
 //==============================================================================
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
