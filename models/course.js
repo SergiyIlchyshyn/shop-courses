@@ -18,7 +18,7 @@ const courseSchema = new Schema({
         ref: 'User'
     }
 });
-
+// metod transform: _id = > id
 courseSchema.method('toClient', function() {
     const course = this.toObject();
     course.id = course._id;

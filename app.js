@@ -1,15 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var expressHbs = require('express-handlebars');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const expressHbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
 const User = require('./models/user');
 //MONGOOSE======================================================================
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 async function start() {
     const url = `mongodb+srv://admin-shop:Oi6Fn45QzY1oDUBg@clustertest-3w4kv.mongodb.net/shop`;
     // Для подключения к БД применяем метод connect()
@@ -36,13 +36,14 @@ async function start() {
 }
 start();
 //==============================================================================
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var coursesRouter = require('./routes/courses');
-var addRouter = require('./routes/add');
-var cardRouter = require('./routes/card');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const coursesRouter = require('./routes/courses');
+const addRouter = require('./routes/add');
+const cardRouter = require('./routes/card');
+const ordersRouter = require('./routes/orders');
 //==============================================================================
-var app = express();
+const app = express();
 //==============================================================================
 app.use(async(req, res, next) => {
     try {
@@ -74,6 +75,7 @@ app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
 app.use('/add', addRouter);
 app.use('/card', cardRouter);
+app.use('/orders', ordersRouter);
 //==============================================================================
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
