@@ -2,13 +2,13 @@ const { Schema, model } = require('mongoose');
 
 const orderSchema = new Schema({
     courses: [{
-        coures: {
+        course: {
             type: Object,
-            require: true
+            required: true
         },
         count: {
             type: Number,
-            require: true
+            required: true
         }
     }],
     user: {
@@ -16,10 +16,10 @@ const orderSchema = new Schema({
         userId: {
             type: Schema.Types.ObjectId,
             ref: 'User',
-            require: true
+            required: true
         }
     },
-    data: {
+    date: {
         type: Date,
         default: Date.now
     }
