@@ -13,12 +13,12 @@ const userSchema = new Schema({
         items: [{
             count: {
                 type: Number,
-                require: true,
+                required: true,
                 default: 1
             },
             courseId: {
                 type: Schema.Types.ObjectId,
-                require: true,
+                required: true,
                 ref: 'Course'
             }
         }]
