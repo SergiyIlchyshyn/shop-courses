@@ -6,6 +6,14 @@ const logger = require('morgan');
 const expressHbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+//==============================================================================
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const coursesRouter = require('./routes/courses');
+const addRouter = require('./routes/add');
+const cardRouter = require('./routes/card');
+const ordersRouter = require('./routes/orders');
+const authRouter = require('./routes/auth');
 
 const User = require('./models/user');
 //MONGOOSE======================================================================
@@ -35,13 +43,6 @@ async function start() {
     }
 }
 start();
-//==============================================================================
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const coursesRouter = require('./routes/courses');
-const addRouter = require('./routes/add');
-const cardRouter = require('./routes/card');
-const ordersRouter = require('./routes/orders');
 //==============================================================================
 const app = express();
 //==============================================================================
@@ -76,6 +77,7 @@ app.use('/courses', coursesRouter);
 app.use('/add', addRouter);
 app.use('/card', cardRouter);
 app.use('/orders', ordersRouter);
+app.use('/auth', authRouter);
 //==============================================================================
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

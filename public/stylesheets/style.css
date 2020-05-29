@@ -78,3 +78,12 @@ a.sidenav-trigger {
     max-width: 600px;
     height: auto;
 }
+
+
+/* ===== Auth ===== */
+
+.auth,
+.auth .login,
+.auth .register {
+    padding-top: 1.5rem;
+}

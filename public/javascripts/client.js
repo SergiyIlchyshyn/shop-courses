@@ -1,6 +1,7 @@
 window.onload = function() {
     let elem = document.querySelector('.sidenav');
     let instance = new M.Sidenav(elem);
+    M.Tabs.init(document.querySelectorAll('.tabs'));
     // ===========================================
 
     const toCurrency = price => {
