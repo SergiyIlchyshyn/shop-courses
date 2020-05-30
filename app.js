@@ -19,6 +19,7 @@ const authRouter = require('./routes/auth');
 //==============================================================================
 const User = require('./models/user');
 const varMiddleware = require('./middleware/variables');
+const userMiddleware = require('./middleware/user');
 //MONGOOSE======================================================================
 const mongoose = require('mongoose');
 const url = `mongodb+srv://admin-shop:Oi6Fn45QzY1oDUBg@clustertest-3w4kv.mongodb.net/shop`;
@@ -65,6 +66,7 @@ app.use(session({
     store: store
 }));
 app.use(varMiddleware);
+app.use(userMiddleware);
 //==============================================================================
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
