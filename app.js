@@ -7,6 +7,7 @@ const expressHbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const session = require('express-session');
+const MongoStore = require('connect-mongodb-session')(session);
 //==============================================================================
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -20,8 +21,8 @@ const User = require('./models/user');
 const varMiddleware = require('./middleware/variables');
 //MONGOOSE======================================================================
 const mongoose = require('mongoose');
+const url = `mongodb+srv://admin-shop:Oi6Fn45QzY1oDUBg@clustertest-3w4kv.mongodb.net/shop`;
 async function start() {
-    const url = `mongodb+srv://admin-shop:Oi6Fn45QzY1oDUBg@clustertest-3w4kv.mongodb.net/shop`;
     // Для подключения к БД применяем метод connect()
     await mongoose.connect(url, {
             useNewUrlParser: true,
@@ -33,30 +34,14 @@ async function start() {
         .catch(err => {
             console.log(Error, err.message);
         });
-
-    const candidate = await User.findOne();
-    if (!candidate) {
-        const user = new User({
-            email: 'sergiy.ilchyshyn@gmail.com',
-            name: 'Sergiy',
-            cart: { items: [] }
-        });
-        await user.save();
-    }
 }
 start();
 //==============================================================================
 const app = express();
 //==============================================================================
-app.use(async(req, res, next) => {
-    try {
-        const user = await User.findById('5ec691f45f2bd31d54b94be1');
-        req.user = user;
-        next();
-    } catch (e) {
-        console.error(e);
-
-    }
+const store = new MongoStore({
+    collection: 'sessions',
+    uri: url
 });
 //HANDLEBARS====================================================================
 app.engine('.hbs', expressHbs({
@@ -76,7 +61,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'secret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: store
 }));
 app.use(varMiddleware);
 //==============================================================================
