@@ -12,27 +12,33 @@
             {{else}}
                 <li><a href="/courses">Courses</a></li>
             {{/if}}
-            {{#if isAdd}}
-                <li class="active"><a href="/add">Add course</a></li>
+
+            {{#if isAuth}}
+                {{#if isAdd}}
+                    <li class="active"><a href="/add">Add course</a></li>
+                {{else}}
+                     <li><a href="/add">Add course</a></li>
+                {{/if}}
+                {{#if isCard}}
+                    <li class="active"><a href="/card">Cart</a></li>
+                {{else}}
+                    <li><a href="/card">Cart</a></li>
+                {{/if}}
+                {{#if isOrder}}
+                    <li class="active"><a href="/orders">Orders</a></li>
+                {{else}}
+                    <li><a href="/orders">Orders</a></li>
+                {{/if}}
+                <li><a href="/auth/logout">Log Out</a></li>
             {{else}}
-                <li><a href="/add">Add course</a></li>
-            {{/if}}  
-            {{#if isCard}}
-                <li class="active"><a href="/card">Cart</a></li>
-            {{else}}
-                <li><a href="/card">Cart</a></li>
-            {{/if}}
-            {{#if isOrder}}
-                <li class="active"><a href="/orders">Orders</a></li>
-            {{else}}
-                <li><a href="/orders">Orders</a></li>
-            {{/if}}
-            {{#if isLogin}}
-                <li class="active"><a href="/auth/login#login">Log In</a></li>
-            {{else}}
-                <li><a href="/auth/login#login">Log In</a></li>
+                {{#if isLogin}}
+                    <li class="active"><a href="/auth/login#login">Log In</a></li>
+                {{else}}
+                    <li><a href="/auth/login#login">Log In</a></li>
+                {{/if}}
             {{/if}}
         </ul>
+        {{!-- Mobile Navbar --}}
         <ul id="slide-out" class="sidenav">
             {{#if isHome}}
                 <li class="active"><a href="/">Home</a></li>
@@ -44,25 +50,30 @@
             {{else}}
                 <li><a href="/courses">Courses</a></li>
             {{/if}}
-            {{#if isAdd}}
-                <li class="active"><a href="/add">Add course</a></li>
+
+            {{#if isAuth}}
+                {{#if isAdd}}
+                    <li class="active"><a href="/add">Add course</a></li>
+                {{else}}
+                    <li><a href="/add">Add course</a></li>
+                {{/if}}
+                {{#if isCard}}
+                    <li class="active"><a href="/card">Cart</a></li>
+                {{else}}
+                    <li><a href="/card">Cart</a></li>
+                {{/if}}
+                {{#if isOrder}}
+                    <li class="active"><a href="/orders">Orders</a></li>
+                {{else}}
+                    <li><a href="/orders">Orders</a></li>
+                {{/if}}
+                <li><a href="/auth/logout">Log Out</a></li>
             {{else}}
-                <li><a href="/add">Add course</a></li>
-            {{/if}}
-            {{#if isCard}}
-                <li class="active"><a href="/card">Cart</a></li>
-            {{else}}
-                <li><a href="/card">Cart</a></li>
-            {{/if}}
-            {{#if isOrder}}
-                <li class="active"><a href="/orders">Orders</a></li>
-            {{else}}
-                <li><a href="/orders">Orders</a></li>
-            {{/if}}
-            {{#if isLogin}}
-                <li class="active"><a href="/auth/login#login">Log In</a></li>
-            {{else}}
-                <li><a href="/auth/login#login">Log In</a></li>
+                {{#if isLogin}}
+                    <li class="active"><a href="/auth/login#login">Log In</a></li>
+                {{else}}
+                    <li><a href="/auth/login#login">Log In</a></li>
+                {{/if}}
             {{/if}}
         </ul>
         <a href="#" data-target="slide-out" class="right sidenav-trigger"><i class="fa fa-bars" aria-hidden="true"></i></a>

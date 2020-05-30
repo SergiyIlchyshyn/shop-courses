@@ -6,6 +6,7 @@ const logger = require('morgan');
 const expressHbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+const session = require('express-session');
 //==============================================================================
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -14,8 +15,9 @@ const addRouter = require('./routes/add');
 const cardRouter = require('./routes/card');
 const ordersRouter = require('./routes/orders');
 const authRouter = require('./routes/auth');
-
+//==============================================================================
 const User = require('./models/user');
+const varMiddleware = require('./middleware/variables');
 //MONGOOSE======================================================================
 const mongoose = require('mongoose');
 async function start() {
@@ -70,6 +72,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//==============================================================================
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(varMiddleware);
 //==============================================================================
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
