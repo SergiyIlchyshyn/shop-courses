@@ -36,12 +36,14 @@ window.onload = function() {
         $card.addEventListener('click', event => {
             if (event.target.classList.contains('js-remove')) {
                 const id = event.target.dataset.id;
+                const csrf = event.target.dataset.csrf;
 
                 fetch('/card/remove/' + id, {
                         method: 'delete',
                         cache: 'no-cache',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'X-XSRF-TOKEN': csrf
                         }
                     })
                     .then(res => res.json())

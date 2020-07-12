@@ -21,8 +21,9 @@
                 <label for="img">Image URL</label>
                 <span class="helper-text" data-error="Enter URL" data-success="right"></span>
             </div>
-
+    
             <input type="hidden" name="id" value="{{course.id}}">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
 
             <button class="btn waves-effect waves-light" type="submit" name="action">Save
             </button>
@@ -34,6 +35,7 @@
     
     <form action="/courses/remove" method="POST">
         <input type="hidden" name="id" value="{{course.id}}">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
         <button type="submit" class="btn red">Delete</button>
     </form>
     

@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressHbs = require('express-handlebars');
@@ -65,6 +66,7 @@ app.use(session({
     saveUninitialized: false,
     store: store
 }));
+app.use(csrf());
 app.use(varMiddleware);
 app.use(userMiddleware);
 //==============================================================================
